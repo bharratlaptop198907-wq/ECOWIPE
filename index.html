@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | EcoWipe</title>
+<meta name="description" content="EcoWipe manufactures facial tissues, toilet paper, napkins, kitchen towels, pocket tissues, wet wipes and industrial hand towels from our Sonipat, Haryana facility, with sales offices in Delhi, Mumbai, Chennai, Kolkata, Dehradun and Shimla.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%2230%22 fill=%22%231F4B43%22/%3E%3Cpath d=%22M20 36c4-14 16-20 26-18-2 10-8 20-22 24-3 1-5-2-4-6z%22 fill=%22%23F1EEE2%22/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<style>
+
+    :root{
+      --ink:#1B2420;
+      --paper:#F1EEE2;
+      --paper-soft:#F8F6EE;
+      --card:#FCFBF6;
+      --forest:#1F4B43;
+      --forest-dark:#153631;
+      --amber:#C98A3E;
+      --amber-dark:#A86E28;
+      --sage:#A9BFAE;
+      --line:#D8D2BE;
+      --shadow: 0 10px 30px rgba(31,75,67,.09);
+      --radius-sm: 4px;
+      --radius-md: 10px;
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+    }
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      font-size:1.02rem;
+      line-height:1.65;
+    }
+    h1,h2,h3,h4,.display-serif{
+      font-family:'Fraunces',Georgia,serif;
+      color:var(--forest-dark);
+      letter-spacing:-.01em;
+      font-weight:600;
+    }
+    h1{font-weight:700;}
+    p{max-width:62ch;}
+    a{color:var(--forest);}
+    a:focus-visible, button:focus-visible, .btn:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+      outline:3px solid var(--amber);
+      outline-offset:2px;
+    }
+    .container-narrow{max-width:1140px;}
+
+    /* ---------- perforation divider (subject-grounded motif: torn/perforated sheet edge) ---------- */
+    .perf-divider{
+      height:1px;
+      width:100%;
+      background-image:repeating-linear-gradient(to right, var(--line) 0 10px, transparent 10px 20px);
+      position:relative;
+    }
+    .perf-divider::before, .perf-divider::after{
+      content:"";
+      position:absolute; top:-5px; width:10px; height:10px; border-radius:50%;
+      background:var(--paper); border:1px solid var(--line);
+    }
+    .perf-divider::before{left:-5px;}
+    .perf-divider::after{right:-5px;}
+
+    /* ---------- navbar ---------- */
+    .site-nav{
+      background:var(--paper-soft);
+      border-bottom:2px dashed var(--line);
+      position:sticky; top:0; z-index:1030;
+    }
+    .site-nav .navbar-brand{display:flex; align-items:center; gap:.6rem;}
+    .brand-word{
+      font-family:'Fraunces',serif; font-weight:700; font-size:1.35rem; color:var(--forest-dark);
+    }
+    .brand-tag{font-size:.68rem; color:#5b6a60; display:block; margin-top:-2px;}
+    .site-nav .nav-link{
+      color:var(--ink); font-weight:500; padding:.5rem 1rem !important;
+      border-bottom:2px solid transparent;
+    }
+    .site-nav .nav-link.active, .site-nav .nav-link:hover{
+      color:var(--forest-dark); border-bottom:2px solid var(--amber);
+    }
+
+    /* ---------- buttons ---------- */
+    .btn{border-radius:var(--radius-sm); font-weight:600; padding:.62rem 1.35rem;}
+    .btn-forest{background:var(--forest); border-color:var(--forest); color:#fff;}
+    .btn-forest:hover{background:var(--forest-dark); border-color:var(--forest-dark); color:#fff;}
+    .btn-amber-outline{background:transparent; border:1.5px solid var(--amber-dark); color:var(--amber-dark);}
+    .btn-amber-outline:hover{background:var(--amber); border-color:var(--amber); color:#fff;}
+
+    /* ---------- hero ---------- */
+    .hero{padding:5.2rem 0 6.5rem;}
+    .hero h1{font-size:clamp(2.3rem, 4vw, 3.4rem); max-width:14ch;}
+    .hero .lede{font-size:1.15rem; color:#3c463f; max-width:46ch;}
+
+    /* ---------- torn paper edge under hero ---------- */
+    .torn-edge{
+      display:block; width:100%; height:34px; margin-top:-2px;
+    }
+
+    /* ---------- section rhythm ---------- */
+    section{padding:4.2rem 0;}
+    .section-tight{padding:2.6rem 0;}
+    .eyebrow-plain{color:var(--amber-dark); font-weight:600; font-size:.95rem;}
+
+    /* ---------- folded-corner card (recurring paper motif) ---------- */
+    .paper-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:1.7rem 1.6rem;
+      position:relative;
+      clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+      height:100%;
+    }
+    .paper-card::after{
+      content:"";
+      position:absolute; top:0; right:0;
+      width:0; height:0;
+      border-style:solid;
+      border-width:0 22px 22px 0;
+      border-color:transparent var(--paper) transparent transparent;
+    }
+    .paper-card h3{font-size:1.18rem; margin-bottom:.5rem;}
+    .paper-card .spec{font-size:.86rem; color:#55635a;}
+
+    .icon-tile{
+      width:56px; height:56px; border-radius:var(--radius-md);
+      background:var(--sage); display:flex; align-items:center; justify-content:center;
+      color:var(--forest-dark); font-size:1.5rem; flex:0 0 auto;
+    }
+
+    /* ---------- stat strip ---------- */
+    .stat-strip{background:var(--forest); color:#fff;}
+    .stat-strip .num{font-family:'Fraunces',serif; font-size:2.1rem; font-weight:700;}
+    .stat-strip .lbl{font-size:.86rem; color:#cfe0d8;}
+
+    /* ---------- process / sequence steps (only used where content is a real sequence) ---------- */
+    .step-row{display:flex; gap:1.1rem; align-items:flex-start;}
+    .step-num{
+      font-family:'Fraunces',serif; font-weight:700; font-size:1.05rem;
+      width:38px; height:38px; border-radius:50%; background:var(--forest);
+      color:#fff; display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+    }
+    .step-line{width:2px; flex:1; background:var(--line); margin:.25rem auto;}
+
+    /* ---------- table ---------- */
+    .table-paper{background:var(--card); border:1px solid var(--line);}
+    .table-paper thead{background:var(--paper-soft);}
+    .table-paper th{color:var(--forest-dark); font-weight:600; border-bottom:2px solid var(--line);}
+    .table-paper td, .table-paper th{padding:.85rem .9rem; vertical-align:middle;}
+
+    /* ---------- badges ---------- */
+    .cert-badge{
+      border:1.5px solid var(--forest); color:var(--forest-dark); background:var(--paper-soft);
+      border-radius:var(--radius-sm); padding:.55rem .9rem; font-weight:600; font-size:.9rem;
+      display:inline-flex; align-items:center; gap:.5rem;
+    }
+
+    /* ---------- map ---------- */
+    .mapouter{position:relative; text-align:right; width:100%; height:400px;}
+    .gmap_canvas{overflow:hidden; background:none !important; width:100%; height:400px; border-radius:var(--radius-md); border:1px solid var(--line);}
+    .gmap_iframe{height:400px !important; width:100% !important; border:0;}
+
+    /* ---------- footer ---------- */
+    .site-footer{background:var(--forest-dark); color:#dce7e1; padding:3rem 0 1.6rem;}
+    .site-footer a{color:#eaf1ed; text-decoration:none;}
+    .site-footer a:hover{color:var(--amber);}
+    .site-footer h5{color:#fff; font-family:'Fraunces',serif; font-size:1.05rem;}
+    .footer-bottom{border-top:1px dashed rgba(255,255,255,.25); margin-top:2rem; padding-top:1.2rem; font-size:.85rem; color:#a9bcb3;}
+
+    /* ---------- forms ---------- */
+    .form-control, .form-select{
+      border-radius:var(--radius-sm); border:1px solid var(--line); padding:.65rem .85rem;
+      background:var(--card);
+    }
+    .form-control:focus, .form-select:focus{
+      border-color:var(--forest); box-shadow:0 0 0 .2rem rgba(31,75,67,.12);
+    }
+    label.form-label{font-weight:600; font-size:.92rem; color:var(--forest-dark);}
+
+    @media (max-width:767px){
+      .hero{padding:3.4rem 0 4rem;}
+      section{padding:3rem 0;}
+    }
+
+
+</style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg site-nav py-2">
+      <div class="container container-narrow">
+        <a class="navbar-brand" href="index.html">
+          <svg width="38" height="38" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EcoWipe logo">
+      <circle cx="32" cy="32" r="30" fill="var(--forest)"/>
+      <path d="M18 38c3-15 17-23 29-20-2 12-9 23-24 27-4 1-6-2-5-7z" fill="#F1EEE2"/>
+      <path d="M20 37c8-3 16-9 21-18" stroke="var(--forest)" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
+      <circle cx="41" cy="19" r="3.2" fill="var(--amber)"/>
+    </svg>
+          <span>
+            <span class="brand-word d-block">EcoWipe</span>
+            <span class="brand-tag">Sustainably made paper &amp; wipes</span>
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+<li class="nav-item"><a class="nav-link" href="materials.html">Materials</a></li>
+<li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+<li class="nav-item"><a class="nav-link" href="testing.html">Testing</a></li>
+<li class="nav-item"><a class="nav-link" href="locations.html">Locations</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <header class="hero">
+      <div class="container container-narrow">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <p class="eyebrow-plain mb-2">Paper &amp; hygiene products, made in Sonipat</p>
+            <h1>Everyday paper, made with a little more intention.</h1>
+            <p class="lede">EcoWipe manufactures facial tissues, toilet paper, napkins, kitchen towels, pocket tissues, wet wipes and industrial hand towels &mdash; engineered for softness and strength, from fibre sourcing to the final fold.</p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <a href="products.html" class="btn btn-forest">See our products</a>
+              <a href="locations.html" class="btn btn-amber-outline">Visit our facility</a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="row g-3">
+              <div class="col-6 pt-4"><svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto;max-width:230px;">
+<defs>
+  <linearGradient id="gBox" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F8F6EE"/><stop offset="1" stop-color="#E4DFCB"/>
+  </linearGradient>
+  <linearGradient id="gForest" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#26584F"/><stop offset="1" stop-color="#153631"/>
+  </linearGradient>
+  <linearGradient id="gTissue" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EFEAD8"/>
+  </linearGradient>
+  <linearGradient id="gSteel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#C6CDC9"/><stop offset="1" stop-color="#9AA6A0"/>
+  </linearGradient>
+</defs>
+    <rect x="35" y="70" width="170" height="120" rx="6" fill="url(#gBox)" stroke="#C9C2A6"/>
+    <rect x="35" y="70" width="170" height="26" rx="6" fill="url(#gForest)"/>
+    <text x="120" y="88" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#F1EEE2">EcoWipe</text>
+    <ellipse cx="120" cy="96" rx="34" ry="9" fill="#153631"/>
+    <path d="M96 96c4-18 14-30 24-34-2 14-2 26 6 34-12 6-22 6-30 0z" fill="url(#gTissue)" stroke="#D8D2BE"/>
+    <path d="M104 92c6-12 12-20 16-24" stroke="#C9C2A6" stroke-width="1.2" fill="none"/>
+    <circle cx="60" cy="130" r="3" fill="#C98A3E"/>
+    <circle cx="75" cy="130" r="3" fill="#C98A3E" opacity=".6"/>
+    <circle cx="90" cy="130" r="3" fill="#C98A3E" opacity=".3"/>
+    </svg></div>
+              <div class="col-6"><svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto;max-width:230px;">
+<defs>
+  <linearGradient id="gBox" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F8F6EE"/><stop offset="1" stop-color="#E4DFCB"/>
+  </linearGradient>
+  <linearGradient id="gForest" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#26584F"/><stop offset="1" stop-color="#153631"/>
+  </linearGradient>
+  <linearGradient id="gTissue" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EFEAD8"/>
+  </linearGradient>
+  <linearGradient id="gSteel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#C6CDC9"/><stop offset="1" stop-color="#9AA6A0"/>
+  </linearGradient>
+</defs>
+    <circle cx="120" cy="105" r="62" fill="url(#gTissue)" stroke="#D8D2BE"/>
+    <circle cx="120" cy="105" r="20" fill="#E4DFCB" stroke="#C9C2A6"/>
+    <circle cx="120" cy="105" r="9" fill="#F1EEE2" stroke="#C9C2A6"/>
+    <path d="M120 43a62 62 0 0 1 62 62" stroke="#D8D2BE" fill="none" stroke-dasharray="2 6"/>
+    <path d="M76 158c10 22 28 34 44 36-2-14 4-24 14-30" fill="none" stroke="#D8D2BE" stroke-width="0"/>
+    <path d="M65 152c8 26 30 42 55 44l4-20c-16-2-30-12-38-28z" fill="url(#gBox)" stroke="#D8D2BE"/>
+    <path d="M70 158c14 4 28 4 40-2" stroke="#C9C2A6" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+    </svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <svg class="torn-edge" viewBox="0 0 1200 34" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,0 L0,14 L30,22 L62,10 L95,24 L128,12 L160,26 L193,9 L226,20 L258,6 L291,22 L324,13 L357,25 L390,8 L423,19 L456,7 L489,23 L522,11 L555,20 L588,5 L621,21 L654,14 L687,26 L720,9 L753,18 L786,6 L819,22 L852,12 L885,24 L918,8 L951,19 L984,10 L1017,23 L1050,13 L1083,25 L1116,7 L1149,20 L1182,11 L1200,16 L1200,34 L0,34 Z" fill="var(--paper-soft)"/>
+    </svg>
+
+    <section class="stat-strip">
+      <div class="container container-narrow">
+        <div class="row text-center g-4">
+          <div class="col-6 col-md-3"><div class="num">7</div><div class="lbl">product lines</div></div>
+          <div class="col-6 col-md-3"><div class="num">3-ply</div><div class="lbl">engineered softness</div></div>
+          <div class="col-6 col-md-3"><div class="num">7</div><div class="lbl">cities across India</div></div>
+          <div class="col-6 col-md-3"><div class="num">3</div><div class="lbl">stage quality checkpoints</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container container-narrow">
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-4">
+          <h2 class="mb-0">What we make</h2>
+          <a href="products.html">View full range &nbsp;&rsaquo;</a>
+        </div>
+        <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#facial" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-box-seam"></i></div>
+              <h3>Facial Tissues</h3>
+              <p class="spec mb-0">Soft, 3-ply comfort for everyday use</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#toilet" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-arrow-repeat"></i></div>
+              <h3>Toilet Paper</h3>
+              <p class="spec mb-0">High-absorbency rolls with clean-tear perforation</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#napkins" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-grid-3x3-gap"></i></div>
+              <h3>Paper Napkins</h3>
+              <p class="spec mb-0">Table-ready napkins for home, HoReCa &amp; events</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#kitchen" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-droplet-half"></i></div>
+              <h3>Kitchen Paper Towels</h3>
+              <p class="spec mb-0">Heavy-duty absorbency for spills and grease</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#pocket" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-bag"></i></div>
+              <h3>Pocket Tissues</h3>
+              <p class="spec mb-0">On-the-go packs that fit any bag or pocket</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#wipes" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-water"></i></div>
+              <h3>Wet Wipes</h3>
+              <p class="spec mb-0">Gentle, alcohol-free cleansing wipes</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="products.html#industrial" class="text-decoration-none">
+            <div class="paper-card d-flex flex-column gap-2">
+              <div class="icon-tile"><i class="bi bi-building"></i></div>
+              <h3>Industrial Hand Towels</h3>
+              <p class="spec mb-0">Dispenser-ready towels for factories &amp; washrooms</p>
+            </div>
+          </a>
+        </div></div>
+      </div>
+    </section>
+
+    <div class="container container-narrow"><div class="perf-divider"></div></div>
+
+    <section>
+      <div class="container container-narrow">
+        <h2 class="mb-4">Why EcoWipe</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="paper-card h-100">
+              <div class="icon-tile mb-3"><i class="bi bi-tree"></i></div>
+              <h3>Responsibly sourced fibre</h3>
+              <p>Virgin pulp, recycled fibre and bamboo, chosen by product and always traceable back to source.</p>
+              <a href="materials.html">Our materials &nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="paper-card h-100">
+              <div class="icon-tile mb-3"><i class="bi bi-flask"></i></div>
+              <h3>Innovation-led R&amp;D</h3>
+              <p>An in-house lab focused on softness, absorbency and lower-impact substrates for our wipes range.</p>
+              <a href="research.html">Our research &nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="paper-card h-100">
+              <div class="icon-tile mb-3"><i class="bi bi-clipboard2-check"></i></div>
+              <h3>Rigorous quality testing</h3>
+              <p>Every batch is checked at the raw material, in-process and finished-goods stage before it leaves the plant.</p>
+              <a href="testing.html">Our testing process &nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container container-narrow">
+        <div class="paper-card d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div>
+            <h3 class="mb-1">Head office &amp; manufacturing &mdash; Sector 14, Sonipat</h3>
+            <p class="mb-0">Plot 14, Sector 14, Sonipat, Haryana 131001, India &mdash; plus sales offices in Delhi, Mumbai, Chennai, Kolkata, Dehradun and Shimla.</p>
+          </div>
+          <a href="locations.html" class="btn btn-forest">View all locations</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container container-narrow">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <h2>Looking to stock EcoWipe or place a bulk order?</h2>
+            <p class="mb-0">Talk to our team about wholesale pricing, private label and custom pack sizes.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="contact.html" class="btn btn-forest">Contact us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <footer class="site-footer">
+      <div class="container container-narrow">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="d-flex align-items-center gap-2 mb-2"><svg width="34" height="34" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EcoWipe logo">
+      <circle cx="32" cy="32" r="30" fill="var(--forest)"/>
+      <path d="M18 38c3-15 17-23 29-20-2 12-9 23-24 27-4 1-6-2-5-7z" fill="#F1EEE2"/>
+      <path d="M20 37c8-3 16-9 21-18" stroke="var(--forest)" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
+      <circle cx="41" cy="19" r="3.2" fill="var(--amber)"/>
+    </svg><span class="brand-word" style="color:#fff;">EcoWipe</span></div>
+            <p class="mb-0" style="max-width:32ch; color:#c3d3cb;">Facial tissues, toilet paper, napkins, kitchen towels, pocket tissues, wet wipes and industrial hand towels &mdash; made with responsibly sourced fibre.</p>
+          </div>
+          <div class="col-lg-2 col-6">
+            <h5>Explore</h5>
+            <ul class="list-unstyled">
+              <li class="mb-1"><a href="products.html">Products</a></li>
+              <li class="mb-1"><a href="materials.html">Materials</a></li>
+              <li class="mb-1"><a href="research.html">Research</a></li>
+              <li class="mb-1"><a href="testing.html">Testing</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-6">
+            <h5>Company</h5>
+            <ul class="list-unstyled">
+              <li class="mb-1"><a href="locations.html">Locations</a></li>
+              <li class="mb-1"><a href="contact.html">Contact us</a></li>
+              <li class="mb-1"><a href="index.html">Home</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <h5>Head office</h5>
+            <p class="mb-1" style="color:#c3d3cb;"><i class="bi bi-geo-alt me-1"></i>Plot 14, Sector 14, Sonipat, Haryana 131001, India</p>
+            <p class="mb-1" style="color:#c3d3cb;"><i class="bi bi-envelope me-1"></i>hello@ecowipe.in</p>
+            <p class="mb-0" style="color:#c3d3cb;"><i class="bi bi-telephone me-1"></i>+91 130 456 7890</p>
+          </div>
+        </div>
+        <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+          <span>&copy; 2026 EcoWipe Paper Products Pvt. Ltd. All rights reserved.</span>
+          <span>Made in Sonipat, Haryana</span>
+        </div>
+      </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
